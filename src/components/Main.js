@@ -13,7 +13,7 @@ export class Main extends Component {
     }
   }
   componentDidMount = () => {
-    axios.get(`http://localhost:8080/apidata`).then(response => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/apidata`).then(response => {
       this.setState({
         apiData: response.data
       })
@@ -26,7 +26,7 @@ export class Main extends Component {
       name:item.name,
       img:item.img
     }
-    axios.post(`http://localhost:8080/favorite`,reqBody).then(response=>{
+    axios.post(`${process.env.REACT_APP_SERVER_URL}/favorite`,reqBody).then(response=>{
       // console.log(response.data)
       if(response.data==='already exist'){
         alert('the drink already in your favorite list')

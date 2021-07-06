@@ -15,7 +15,7 @@ export class Favorite extends Component {
     }
   }
   componentDidMount = () => {
-    axios.get(`http://localhost:8080/favorite`).then(response => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/favorite`).then(response => {
       this.setState({
         favoriteData: response.data
       })
@@ -23,9 +23,9 @@ export class Favorite extends Component {
   }
   removeFromFavorite = async (item) => {
     // console.log(item.id)
-    await axios.delete(`http://localhost:8080/favorite/${item.id}`).then(response => {
+    await axios.delete(`${process.env.REACT_APP_SERVER_URL}/favorite/${item.id}`).then(response => {
     }).catch(error => error.message)
-    axios.get(`http://localhost:8080/favorite`).then(response => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/favorite`).then(response => {
       this.setState({
         favoriteData: response.data
       })
@@ -46,13 +46,13 @@ export class Favorite extends Component {
       img: e.target.img.value
     }
     // console.log(id, reqBody)
-    await axios.put(`http://localhost:8080/favorite/${id}`, reqBody).then(response => { 
+    await axios.put(`${process.env.REACT_APP_SERVER_URL}/favorite/${id}`, reqBody).then(response => { 
       // console.log(response.data)
       this.setState({
         showForm:false
       })
      }).catch(error => alert(error.message))
-    axios.get(`http://localhost:8080/favorite`).then(response => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/favorite`).then(response => {
       this.setState({
         favoriteData: response.data
       })
